@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get '/', to: 'application#home'
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
   get '/signin', to: 'sessions#new'
@@ -7,7 +9,10 @@ Rails.application.routes.draw do
   
   resources :accounts
   resources :categories
-  resources :expenses
-  resources :users, only: [:create, :show]
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+ 
+
+  resources :users, only: [:create, :show] do
+    resources :expenses
+  end
+  
 end
