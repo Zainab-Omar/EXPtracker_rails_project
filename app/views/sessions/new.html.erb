@@ -1,0 +1,11 @@
+<h1>Sign In!</h1>
+
+<%= form_for :user do |f| %>
+    <%= f.label :email %>
+    <%= f.email_field :email, required: true %>
+    <br><br>
+    <%= f.label :password %>
+    <%= f.password_field :password, required: true %>
+    <br><br>
+    <%= f.submit 'Sign In' %>
+<%end%>
