@@ -1,6 +1,6 @@
-class CreateIncomes < ActiveRecord::Migration[6.0]
+class CreateAccounts < ActiveRecord::Migration[6.0]
   def change
-    create_table :incomes do |t|
+    create_table :accounts do |t|
       t.float :amount
       t.integer :user_id
       

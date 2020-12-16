@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   post '/signin', to: 'sessions#create'
   post '/signout', to: 'sessions#destroy'
   
-  resources :incomes
+  resources :accounts
   resources :categories
   resources :expenses
   resources :users

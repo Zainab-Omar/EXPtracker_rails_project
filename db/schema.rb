@@ -12,6 +12,13 @@
 
 ActiveRecord::Schema.define(version: 2020_12_15_221134) do
 
+  create_table "accounts", force: :cascade do |t|
+    t.float "amount"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -24,14 +31,7 @@ ActiveRecord::Schema.define(version: 2020_12_15_221134) do
     t.datetime "date"
     t.integer "user_id"
     t.integer "category_id"
-    t.integer "income_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "incomes", force: :cascade do |t|
-    t.float "amount"
-    t.integer "user_id"
+    t.integer "account_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
