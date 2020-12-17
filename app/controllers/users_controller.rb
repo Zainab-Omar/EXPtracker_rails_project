@@ -10,6 +10,7 @@ class UsersController < ApplicationController
           flash[:notice] = "Successfully Created An Account"
           session[:user_id] = @user.id
           redirect_to user_path(@user) #showpage
+         
         else
           redirect_to '/signup' #show the sign up form
         end

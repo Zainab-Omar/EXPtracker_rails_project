@@ -11,13 +11,16 @@ class SessionsController < ApplicationController
         if @user && @user.authenticate(params[:user][:password])
             session[:user_id] = @user.id
             redirect_to user_path(@user) #show page
+            flash[:notice] = "Successfully signed in"
         else
-            redirect_to '/signin'
+         flash[:error] = "Please enter correct email and password, or sign up"
+         redirect_to '/'
         end
     end
 
     def destroy
         session.delete :user_id
         redirect_to '/signin'
+        flash[:notice] = "Successfully Signed out!"
     end
 end
