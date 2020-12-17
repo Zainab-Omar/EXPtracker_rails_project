@@ -9,10 +9,10 @@ Rails.application.routes.draw do
   
   resources :accounts
   resources :categories
- 
+  resources :expenses
 
   resources :users, only: [:create, :show] do
-    resources :expenses
+    resources :accounts
   end
   
 end

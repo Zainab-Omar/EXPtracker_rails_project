@@ -3,6 +3,17 @@
   <% end %>
 <h1>Welcome <%= @user.username%>!</h1>
 
+<% if @user.accounts.empty? %>
+    <h3> You do not have any accounts create <%= link_to 'New Account', new_user_account_path(@user) %>
+<%else%>
+    <ul>
+        <% @user.accounts.each do |account| %>
+        <li><%= account.name%></li>
+        <%end%>
+<%end%>
+</ul>
+
+
 <%= form_tag ({controller: 'sessions', action: 'destroy', method: 'post'}) do %>
   <input type=submit value='Signout'>
 <% end %>
