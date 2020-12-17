@@ -28,6 +28,12 @@ class AccountsController < ApplicationController
       end
    end  
 
+   def show
+    if logged_in?
+        @account = Account.find_by(id: params[:id])
+    end
+   end
+
     private
 
     def account_params
