@@ -1,1 +1,7 @@
 <h1>Account Index page</h1>
+<h3> To see the details each account click on it</h3>
+<ul>
+<% @accounts.each do |account| %>
+<li><%= link_to account.name, user_account_path(account.user, account) %></li>
+<%end%>
+</ul>
