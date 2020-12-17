@@ -21,9 +21,9 @@ class AccountsController < ApplicationController
         @account.user_id = @user.id
         if @account.save
             flash[:notice] = "Successfully Created An Account"
-            redirect_to user_accounts_path (@user) #user_account_index page
+            redirect_to accounts_path  #account_index page
         else
-            redirect_to new_user_account_path(@user)
+            redirect_to new_account_path #accounts new form 
         end
       end
    end  

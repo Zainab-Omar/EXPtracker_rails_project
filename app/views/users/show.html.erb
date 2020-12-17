@@ -2,18 +2,18 @@
     <div class="notice"><%= flash[:notice] %></div>
   <% end %>
 <h1>Welcome <%= @user.username%>!</h1>
-
+    <h2>Your accounts</h2>
     <% if @user.accounts.empty? %>
       <h3> You do not have any accounts</h3>
     <%else%>
     <ul>
         <% @user.accounts.each do |account| %>
-        <li><%= link_to account.name, user_account_path(account.user, account)%></li>
+        <li><%= link_to account.name, account_path(account)%></li>
         <%end%>
     </ul>
     <% end %>
 
-<%= link_to 'New Account', new_user_account_path(@user) %><br><br>
+<%= link_to 'New Account', new_account_path %><br><br>
 
 <%= form_tag ({controller: 'sessions', action: 'destroy', method: 'post'}) do %>
   <input type=submit value='Signout'>
