@@ -4,9 +4,9 @@
     <% if @account.expenses.any? %>
         <ul>
         <% @account.expenses.each do |exp| %>
-        <li><%= exp %></li>
-        </ul>
+        <li><%=exp.date%>- $<%=exp.amount%></li>
         <% end %>
+        </ul>
     <% else %>
         <p>You do not have any expenses</p>
     <%end%>

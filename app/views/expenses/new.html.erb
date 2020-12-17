@@ -1,6 +1,7 @@
 <h1>Create your Expenses</h1>
 
-<%= form_for @expense do |f| %>
+
+<%= form_for [@account, @expense] do |f| %>
     <%= f.label :amount %>
     <%= f.number_field :amount, value: number_to_currency(f.object.amount.to_f, delimiter: '', unit: ''), step: :any %>
     <br><br>
@@ -11,8 +12,10 @@
     <%= f.text_area :description %>
     <br><br>
 
-    <p>Choose or create a category: </p>
-
+    <p>Choose a category: </p>
+    <%= f.collection_check_boxes :category_name, Category.all, :id, :name %><br><br>
+    <p>Create New Category</p>
+    <%= f.text_field :category_name %> <br><br>
 
     <%= f.submit 'Create Expense' %>
 <% end %>

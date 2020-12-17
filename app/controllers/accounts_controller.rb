@@ -39,4 +39,8 @@ class AccountsController < ApplicationController
     def account_params
       params.require(:account).permit(:name, :amount, :user_id)  
     end
+
+    def find_account
+        @account = Account.find_by(id: params[:id])
+    end
 end
