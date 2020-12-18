@@ -1,6 +1,7 @@
 <h1><%= @account.name %></h1>
 <h3> amount: <%= @account.amount %></h3>
-<%= link_to 'Edit Account', edit_account_path(@account)%>
+<%= link_to 'Edit Account', edit_account_path(@account)%><br>
+<%= link_to 'Delete', @account, method: :delete, data: { confirm: 'Are you Sure? all the associated expenses will be deleted too.' } %>
 <h4> Your Expenses</h4>
     <% if @account.expenses.any? %>
         <ul>

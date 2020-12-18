@@ -48,6 +48,12 @@ class AccountsController < ApplicationController
     end
    end
 
+   def destroy
+    @account.destroy
+    flash[:notice] = "Successfully Deleted Account"
+    redirect_to accounts_path #account index page
+   end
+
     private
 
     def account_params
