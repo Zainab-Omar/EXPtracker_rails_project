@@ -13,7 +13,6 @@ class AccountsController < ApplicationController
     def create
         #raise params.inspect
         #binding.pry
-        if logged_in?
         @account = Account.new(account_params)
         @user = current_user
         @account.user_id = @user.id
@@ -23,20 +22,30 @@ class AccountsController < ApplicationController
         else
             redirect_to new_account_path #accounts new form 
         end
-      end
    end  
 
    def show
-    if logged_in?
-        @account = Account.find_by(id: params[:id])
-    end
+        if @account.nil?
+            redirect_to accounts_path
+        end
    end
 
    def edit 
+   # binding.pry
+    if @account.nil?
+        redirect_to accounts_path #account index page
+        flash[:error] = "Account Can not be Found" 
+    end
    end
 
    def update
-
+    #binding.pry
+    if @account.update(account_params)
+        flash[:notice] = "Successfully Updated Account"
+        redirect_to account_path(@account)
+    else
+        render 'edit'
+    end
    end
 
     private

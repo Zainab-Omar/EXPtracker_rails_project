@@ -14,11 +14,6 @@ class ExpensesController < ApplicationController
               redirect_to accounts_path
             end
           end
-    #    if logged_in?
-    #       @expense = Expense.new
-    #     else
-    #         redirect_to '/'
-    #     end 
 
     def create
       # raise params.inspect
