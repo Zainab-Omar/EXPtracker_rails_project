@@ -1,13 +1,3 @@
 <h1>Edit an Account </h1>
 
-<%= form_for @account do |f| %>
-   
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-    <br><br>
-    <%= f.label :amount %>
-    <%= f.number_field :amount, value: number_to_currency(f.object.amount.to_f, delimiter: '', unit: ''), step: :any %>
-    <br><br>
-    <%= f.submit 'Edit Account'%>
-
-<%end%>
+<%= render 'form' %> 
