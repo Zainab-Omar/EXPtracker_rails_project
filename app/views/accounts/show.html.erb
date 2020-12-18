@@ -4,7 +4,7 @@
     <% if @account.expenses.any? %>
         <ul>
         <% @account.expenses.each do |exp| %>
-        <li><%=exp.date%>- $<%=exp.amount%></li>
+        <li>$<%= link_to exp.amount, account_expense_path(@account,exp)%></li>
         <% end %>
         </ul>
     <% else %>
