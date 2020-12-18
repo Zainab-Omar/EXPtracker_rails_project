@@ -1,15 +1,13 @@
 class AccountsController < ApplicationController
+    before_action :authenticate_user
+    before_action :find_account, only: [:show, :edit, :update, :destroy]
 
     def index
         @accounts = Account.all
     end
     
     def new
-        if logged_in?
-            @account = Account.new
-        else
-            redirect_to '/'
-        end   
+     @account = Account.new 
     end
 
     def create
@@ -34,13 +32,20 @@ class AccountsController < ApplicationController
     end
    end
 
+   def edit 
+   end
+
+   def update
+
+   end
+
     private
 
     def account_params
       params.require(:account).permit(:name, :amount, :user_id)  
     end
 
-    # def find_account
-    #     @account = Account.find_by(id: params[:id])
-    # end
+    def find_account
+        @account = Account.find_by(id: params[:id])
+    end
 end

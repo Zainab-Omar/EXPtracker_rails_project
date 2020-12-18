@@ -1,5 +1,5 @@
 class ExpensesController < ApplicationController
-    before_action :logged_in?
+    before_action :authenticate_user
     before_action :find_account
 
     def index
