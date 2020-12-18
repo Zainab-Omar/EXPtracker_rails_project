@@ -35,26 +35,17 @@ class ExpensesController < ApplicationController
    end
 
    def show
-    #binding.pry
     if @account.nil?
       redirect_to accounts_path #account index page
       flash[:error] = "Account Not Found"
     else
       @expense = @account.expenses.find_by(id: params[:id])
-       #binding.pry
+      # binding.pry
       if @expense.nil?
         redirect_to account_path(@account) #account show page
         flash[:error] = "Expense Not Found"
       end
        end
-    # if !params[:account_id]
-    #   redirect_to accounts_path #account index
-    # else
-    #   @expense = Expense.find_by(id: params[:id])
-    #   if @expense.nil?
-    #     redirect_to account_path(@expense.account) #account show page
-    #   end
-    # end
   end
 
   private
