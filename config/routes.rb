@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   post '/signin', to: 'sessions#create'
   post '/signout', to: 'sessions#destroy'
 
+  get '/auth/:provider/callback' => 'sessions#create'
+
   resources :users, only: [:create, :show] 
   resources :accounts
   resources :categories
