@@ -5,3 +5,6 @@
     <li><h3> Expense Category: <%= @expense.category.name %></h3></li>
     <li><h3> Expense Description: <%= @expense.description %></h3></li>
     </ul>
+
+<%= link_to 'Edit Expense', edit_account_expense_path(@account, @expense)%><br>
+<%= link_to 'Delete', @expense, method: :delete, data: { confirm: 'Are you Sure?' } %>

@@ -18,7 +18,7 @@ class ExpensesController < ApplicationController
     def create
       # raise params.inspect
       # @account = current_user.accounts.find_by(id: params[:account_id]) #find parent route
-      # binding.pry
+      #binding.pry
        @expense = @account.expenses.build(expense_params)
        @expense.user_id = current_user.id
        if @expense.save
