@@ -40,8 +40,40 @@ class ExpensesController < ApplicationController
         redirect_to account_path(@account) #account show page
         flash[:error] = "Expense Not Found"
       end
-       end
-  end
+     end
+    end
+
+    def edit
+      if @account.nil?
+        redirect_to accounts_path
+        flash[:error] = "Account not found"
+      else
+        @expense = @account.expenses.find_by(id: params[:id])
+        if @expense.nil?
+          redirect_to account_path(@account)
+          flash[:error] = "Expense not found"
+        end
+      end
+    end
+
+    def update
+      #binding.pry
+      @expense = @account.expenses.find_by(id: params[:id])
+      if @expense.update(expense_params)
+        flash[:notice] = "Successfully Updated The Expense"
+        redirect_to account_expense_path(@account, @expense)
+      else
+        render 'edit'
+      end
+    end
+    def destroy
+     # binding.pry
+     @expense = Expense.find_by(id: params[:id])
+      if @expense.delete
+        flash[:notice] = "Successfully Deleted The Expense"
+        redirect_to account_path(@expense.account)
+      end
+    end
 
   private
     def expense_params
