@@ -1,10 +1,14 @@
+ <% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+  <% end %>
+
 <h1>Your Expense details</h1>
   <ul>
-    <li><h3> Account name: <%= @expense.account.name %></h3></li>
-    <li><h3> Expense Amount: <%= @expense.amount %></h3></li>
-    <li><h3> Expense Transction Date: <%= @expense.date %>
-    <li><h3> Expense Category: <%= @expense.category.name %></h3></li>
-    <li><h3> Expense Description: <%= @expense.description %></h3></li>
+    <li><strong>Account name: </strong><%= @expense.account.name %></li>
+    <li><strong> Expense Amount: </strong><%= @expense.amount %></li>
+    <li><strong> Transction Date: </strong> <%= @expense.date.strftime("%d %b %Y %l:%M %p") %>
+    <li><strong> Category: </strong><%= @expense.category.name %></li>
+    <li><strong> Description: </strong> <%= @expense.description %></li>
     </ul>
 
 <%= link_to 'Edit Expense', edit_account_expense_path(@account, @expense)%><br>

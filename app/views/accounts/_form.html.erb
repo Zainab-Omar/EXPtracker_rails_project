@@ -1,11 +1,25 @@
+<% if @account.errors.any? %>
+  <div id="error_explanation">
+    <ul>
+      <% @account.errors.full_messages.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_for @account do |f| %>
-   
+    
+    <div class="field_with_errors">
     <%= f.label :name %>
     <%= f.text_field :name %>
-    <br><br>
+    </div><br>
+
+    <div class="field_with_errors">
     <%= f.label :amount %>
     <%= f.number_field :amount, value: number_to_currency(f.object.amount.to_f, delimiter: '', unit: ''), step: :any %>
-    <br><br>
+    </div><br>
+    
     <%= f.submit %>
 
 <%end%>

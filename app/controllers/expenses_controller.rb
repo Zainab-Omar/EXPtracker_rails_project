@@ -22,8 +22,8 @@ class ExpensesController < ApplicationController
        @expense = @account.expenses.build(expense_params)
        @expense.user_id = current_user.id
        if @expense.save
-         flash[:notice] = "Successfully Created An Expense"
          redirect_to account_expense_path(@account, @expense) #account/expense/showpage
+         flash[:notice] = "Successfully Created An Expense"
       else
         render 'new'
      end
@@ -60,18 +60,19 @@ class ExpensesController < ApplicationController
       #binding.pry
       @expense = @account.expenses.find_by(id: params[:id])
       if @expense.update(expense_params)
-        flash[:notice] = "Successfully Updated The Expense"
         redirect_to account_expense_path(@account, @expense)
+        flash[:notice] = "Successfully Updated The Expense"
       else
         render 'edit'
       end
     end
+
     def destroy
      # binding.pry
      @expense = Expense.find_by(id: params[:id])
       if @expense.delete
-        flash[:notice] = "Successfully Deleted The Expense"
         redirect_to account_path(@expense.account)
+        flash[:notice] = "Successfully Deleted an Expense"
       end
     end
 
