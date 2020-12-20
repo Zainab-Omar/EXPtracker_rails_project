@@ -3,6 +3,9 @@ class Expense < ApplicationRecord
     belongs_to :account
     belongs_to :user
 
+    validates :amount, presence: true, numericality: { greater_than: 0 }
+    validates :description, :date, :category_name, presence: true
+
 
     def category_name=(name)
         self.category = Category.find_or_create_by(name: name)
