@@ -24,8 +24,8 @@ class SessionsController < ApplicationController
             redirect_to user_path(@user) #show page
             flash[:notice] = "Successfully signed in"
         else
-         flash[:error] = "Please enter correct email and password, or sign up"
-         redirect_to '/'
+           flash[:error] = "Please enter correct email or password"
+         render 'new'
         end
       end
     end

@@ -5,4 +5,6 @@ class Account < ApplicationRecord
 
     validates :name, presence: true
     validates :amount, presence: true, numericality: { greater_than: 0 }
+
+    scope :recent_expenses, -> {order('account.expenses.updated_at DESC')}
 end

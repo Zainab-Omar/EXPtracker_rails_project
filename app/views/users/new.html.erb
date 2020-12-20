@@ -1,19 +1,40 @@
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <ul>
+      <% @user.errors.full_messages.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
 <h1>Sign Up!</h1>
 
 <%= form_for @user do |f| %>
+    <div class="field_with_errors">
     <%= f.label :username %>
     <%= f.text_field :username, required: true %>
-    <br><br>
+    </div><br>
+    
+    <div class="field_with_errors">
     <%= f.label :email %>
     <%= f.email_field :email, required: true %>
-    <br><br>
+    </div><br>
+
+    <div class="field_with_errors">
     <%= f.label :password %>
     <%= f.password_field :password, required: true %>
-    <br><br>
+    </div><br>
+
+    <div class="field_with_errors">
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation, required: true %>
-    <br><br>
+    </div><br>
+
     <%= f.submit 'Sign Up' %>
-<%end%><br><br>
+<%end%>
+
+<br><br>
 
   <p><%= link_to 'Signing in with the GitHub', '/auth/github'%>.</p>
