@@ -6,8 +6,8 @@
   <ul>
     <li><strong>Account name: </strong><%= @expense.account.name %></li>
     <li><strong> Expense Amount: </strong><%= @expense.amount %></li>
-    <li><strong> Transction Date: </strong> <%= @expense.date.strftime("%d %b %Y %l:%M %p") %>
-    <li><strong> Category: </strong><%= @expense.category.name %></li>
+    <li><strong> Transction Date: </strong> <%= @expense.date_time %>
+    <li><strong> Category: </strong><%= @expense.category.titleize_name %></li>
     <li><strong> Description: </strong> <%= @expense.description %></li>
     </ul>
 

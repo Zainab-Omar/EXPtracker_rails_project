@@ -15,5 +15,9 @@ class Expense < ApplicationRecord
         self.category ? self.category.name : nil
     end
 
+    def date_time
+        self.date.strftime("%d %b %Y %l:%M %p")
+    end
+
 end
 
