@@ -6,5 +6,28 @@ class Account < ApplicationRecord
     validates :name, presence: true, uniqueness: true
     validates :amount, presence: true, numericality: { greater_than: 0 }
 
-    scope :recent_expenses, -> {order('account.expenses.updated_at DESC')}
+    scope :order_by_amount, -> {order('accounts.amount DESC')}
+
+    def total_expenses
+        self.expenses.sum(:amount)
+    end
+    
+    def min_expense
+        self.expenses.minimum(:amount)
+    end
+    
+    def max_expense
+        self.expenses.maximum(:amount)
+    end
+    
+    def avg_expense
+        self.expenses.average(:amount)
+    end
+    
+    def money_left
+        self.amount - self.total_expenses
+    end
 end
+
+
+

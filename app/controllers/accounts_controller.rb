@@ -3,7 +3,8 @@ class AccountsController < ApplicationController
     before_action :find_account, only: [:show, :edit, :update, :destroy]
 
     def index
-        @accounts = Account.all
+        #binding.pry
+        @accounts = Account.order_by_amount
     end
     
     def new

@@ -6,6 +6,8 @@ class Expense < ApplicationRecord
     validates :amount, presence: true, numericality: { greater_than: 0 }
     validates :description, :date, :category_name, presence: true
 
+    #scope :recent, -> {order('expenses.date DESC').limit(5)}
+
 
     def category_name=(name)
         self.category = Category.find_or_create_by(name: name)

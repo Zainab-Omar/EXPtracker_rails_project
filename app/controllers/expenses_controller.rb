@@ -3,7 +3,13 @@ class ExpensesController < ApplicationController
     before_action :find_account
 
     def index
-        @expenses = Expense.all
+     # binding.pry
+        if @account.nil?
+          redirect_to accounts_path #account index page
+          flash[:error] = "Account does not exist"
+        else
+          @expenses = @account.expenses
+        end
     end
 
     def new
@@ -75,6 +81,11 @@ class ExpensesController < ApplicationController
         flash[:notice] = "Successfully Deleted an Expense"
       end
     end
+
+    # def most_recent
+    #  #binding.pry
+    #  @expenses = Expense.recent
+    # end
 
   private
     def expense_params
