@@ -2,7 +2,10 @@
     <div class="notice"><%= flash[:notice] %></div>
   <% end %>
 
-  
+  <% if flash[:error] %>
+    <div class="error"><%= flash[:error] %></div>
+  <% end %>
+
 <h1>Account Index page</h1>
 <h3> To see the details each account click on it</h3>
 

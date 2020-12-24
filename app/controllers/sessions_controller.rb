@@ -4,9 +4,6 @@ class SessionsController < ApplicationController
     end
 
     def create
-        #normal sign in with username and password
-        #raise params.inspect
-        #binding.pry
         #omniauth login
         if auth
             @user = User.find_or_create_by(uid: auth['uid']) do |u|

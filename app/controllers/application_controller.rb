@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
         end
     end
 
-    def current_user
+    def current_user 
         @current_user ||= User.find(session[:user_id]) if session[:user_id]
     end
     
@@ -14,9 +14,9 @@ class ApplicationController < ActionController::Base
         !!current_user
     end
 
-    def authenticate_user
-        if !logged_in?
-          redirect_to '/'
-        end
-      end
+    # def authenticate_user
+    #     if !logged_in?
+    #       redirect_to '/'
+    #     end
+    #   end
 end

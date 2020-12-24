@@ -2,12 +2,16 @@
     <div class="notice"><%= flash[:notice] %></div>
   <% end %>
 
+  <% if flash[:error] %>
+    <div class="error"><%= flash[:error] %></div>
+  <% end %>
+
 <h1>Your Expense details</h1>
   <ul>
     <li><strong>Account name: </strong><%= @expense.account.name %></li>
     <li><strong> Expense Amount: </strong><%= @expense.amount %></li>
     <li><strong> Transction Date: </strong> <%= @expense.date_time %>
-    <li><strong> Category: </strong><%= @expense.category.titleize_name %></li>
+    <li><strong> Category: </strong><%= @expense.category.name%></li>
     <li><strong> Description: </strong> <%= @expense.description %></li>
     </ul>
 

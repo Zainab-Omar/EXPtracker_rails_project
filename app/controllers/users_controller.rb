@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user, only: [:show]
+ # before_action :authenticate_user, only: [:show]
     def new
         @user = User.new
     end
@@ -8,10 +8,9 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
          if @user.valid?
           @user.save
-    
           flash[:notice] = "Successfully Created An Account"
           session[:user_id] = @user.id
-          redirect_to user_path(@user) #showpage 
+          redirect_to user_path(@user) #user showpage 
         else
           render 'new' #show the sign up form
         end
@@ -19,11 +18,12 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find_by(id: params[:id])
-        if @user && @user == current_user
+        if @user == current_user
           @accounts  = @user.accounts
         else
           redirect_to '/'
-        end
+          flash[:error] = "can not access other users pages"
+      end
     end
 
     private

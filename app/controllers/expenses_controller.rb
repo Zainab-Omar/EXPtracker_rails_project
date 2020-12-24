@@ -1,5 +1,4 @@
 class ExpensesController < ApplicationController
-    before_action :authenticate_user
     before_action :logged_in?
     before_action :find_account
 
@@ -8,17 +7,24 @@ class ExpensesController < ApplicationController
         if @account.nil?
           redirect_to accounts_path #account index page
           flash[:error] = "Account does not exist"
-        else
+        elsif
+          @account.user_id == current_user.id
           @expenses = @account.expenses
+        else
+          redirect_to accounts_path
+          flash[:error] = "you are unauthorized to view expenses associated with this account"
         end
     end
 
     def new
-        @account = current_user.accounts.find_by(id: params[:account_id])
-            if @account
-              @expense = @account.expenses.new
-            else
-              redirect_to accounts_path
+
+    #binding.pry
+        #@account = current_user.accounts.find_by(id: params[:account_id])
+          if @account && @account.user_id == current_user.id
+            @expense = @account.expenses.new
+          else
+            redirect_to accounts_path
+            flash[:error] = "unauthorized to create new expense"
             end
           end
 
@@ -27,7 +33,7 @@ class ExpensesController < ApplicationController
       # @account = current_user.accounts.find_by(id: params[:account_id]) #find parent route
       #binding.pry
        @expense = @account.expenses.build(expense_params)
-       @expense.user_id = current_user.id
+       @expense.user_id = @account.user_id
        if @expense.save
          redirect_to account_expense_path(@account, @expense) #account/expense/showpage
          flash[:notice] = "Successfully Created An Expense"
@@ -37,30 +43,34 @@ class ExpensesController < ApplicationController
    end
 
    def show
-    if @account.nil?
-      redirect_to accounts_path #account index page
-      flash[:error] = "Account Not Found"
-    else
-      @expense = @account.expenses.find_by(id: params[:id])
-      # binding.pry
-      if @expense.nil?
-        redirect_to account_path(@account) #account show page
-        flash[:error] = "Expense Not Found"
+
+   #binding.pry
+    # if @account.nil?
+    #   redirect_to accounts_path #account index page
+    #   flash[:error] = "Account Not Found"
+    # elsif
+      if @account && @account.user == current_user
+         @expense = @account.expenses.find_by(id: params[:id])
+       if @expense.nil?
+          redirect_to account_path(@account) #account show page
+          flash[:error] = "Expense Not Found"
+      else
+        render 'show'
       end
+    else
+        redirect_to accounts_path
+        flash[:error] = "unauthorized to view this expense"
      end
     end
 
     def edit
-      if @account.nil?
-        redirect_to accounts_path
-        flash[:error] = "Account not found"
+      #binding.pry
+      if @account && @account.user == current_user
+          @expense = @account.expenses.find_by(id: params[:id])
       else
-        @expense = @account.expenses.find_by(id: params[:id])
-        if @expense.nil?
-          redirect_to account_path(@account)
-          flash[:error] = "Expense not found"
+        redirect_to account_path(@account)
+          #flash[:error] = "Expense not found or You are not authorized to edit it"
         end
-      end
     end
 
     def update

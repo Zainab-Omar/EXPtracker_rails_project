@@ -3,7 +3,7 @@ class Account < ApplicationRecord
     has_many :expenses
     has_many :categories, through: :expenses
 
-    validates :name, presence: true, uniqueness: true
+    validates :name, presence: true #, uniqueness: true
     validates :amount, presence: true, numericality: { greater_than: 0 }
 
     scope :order_by_amount, -> {order('accounts.amount DESC')}
