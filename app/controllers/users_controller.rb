@@ -5,18 +5,14 @@ class UsersController < ApplicationController
     end
 
     def create
-
-   # binding.pry
         @user = User.new(user_params)
          if @user.valid?
           @user.save
     
           flash[:notice] = "Successfully Created An Account"
           session[:user_id] = @user.id
-          redirect_to user_path(@user) #showpage
-         
+          redirect_to user_path(@user) #showpage 
         else
-         # @errors = @user.errors.full_messages
           render 'new' #show the sign up form
         end
       end

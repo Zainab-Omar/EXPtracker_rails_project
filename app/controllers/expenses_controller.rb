@@ -1,5 +1,6 @@
 class ExpensesController < ApplicationController
     before_action :authenticate_user
+    before_action :logged_in?
     before_action :find_account
 
     def index
@@ -77,7 +78,7 @@ class ExpensesController < ApplicationController
      # binding.pry
      @expense = Expense.find_by(id: params[:id])
       if @expense.delete
-        redirect_to account_path(@expense.account)
+        redirect_to account_expenses_path(@expense.account, @expense)
         flash[:notice] = "Successfully Deleted an Expense"
       end
     end

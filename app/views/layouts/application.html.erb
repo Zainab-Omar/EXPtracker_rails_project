@@ -10,6 +10,24 @@
   </head>
 
   <body>
+    <header>
+      <% if @current_user %>
+      
+      <ul id="layout">
+
+        <li class="list"><%= link_to "Home", user_path(@current_user) %></li>
+        <li class="list"><%= link_to "Accounts", accounts_path %></li>
+        <li class="list"><%= link_to 'New Account', new_account_path %></li>
+        
+        <div class="signout"><li class="list"><%= form_tag ({controller: 'sessions', action: 'destroy', method: 'post'}) do %>
+          <input type=submit value='Signout', class="button">
+          <%end%></li></div>
+      </ul>
+      
+      <%end%>
+
+    </header>
+
     <%= yield %>
   </body>
 </html>

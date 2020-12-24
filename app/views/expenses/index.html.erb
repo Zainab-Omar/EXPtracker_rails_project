@@ -1,15 +1,19 @@
+<% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
 <h3> account name: <%= @account.name %></h3>
 <h4>Your Expenses:</h4>
 <% if @expenses.any? %>
         <ul>
         <% @expenses.each do |exp| %>
-        <li>$<%= link_to exp.amount, account_expense_path(@account,exp)%></li>
+        <li><%= link_to number_to_currency(exp.amount), account_expense_path(@account,exp)%></li>
         <% end %>
         </ul>
     <% else %>
         <p>You do not have any expenses</p>
     <%end%>
 
-<%= link_to 'Create Expense', new_account_expense_path(@account) %>
+<%= link_to 'Create Expense', new_account_expense_path(@account), class: "button" %>
 
 

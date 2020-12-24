@@ -5,19 +5,20 @@
     <div class="error"><%= flash[:error] %></div>
   <% end %>
 
-
-<div class="login-form">
 <div class="wrapper">
+
+<div class="signin">
   <h2>Sign In!</h2>
   
     <%= form_for :user do |f| %>
       <%= f.text_field :email, class: 'form-control', placeholder: 'Email', required: 'required' %><br><br>
       <%= f.password_field :password, class: 'form-control', placeholder: 'Password', required: 'required' %><br><br>
-      <%= f.submit "Sign In", class: 'btn btn-primary btn-block' %>
+      <%= f.submit "Sign In" %>
     <% end %><br>
-  
 
 <p><%= link_to "Signin in Via GitHub", "auth/github"%></p>
 
 <p>New User? Please <%= link_to "Sign Up", signup_path %></p>
+
+</div>
 </div>

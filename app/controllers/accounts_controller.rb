@@ -1,10 +1,11 @@
 class AccountsController < ApplicationController
     before_action :authenticate_user
+    before_action :logged_in?
     before_action :find_account, only: [:show, :edit, :update, :destroy]
 
     def index
         #binding.pry
-        @accounts = Account.order_by_amount
+        @accounts = current_user.accounts.order_by_amount
     end
     
     def new

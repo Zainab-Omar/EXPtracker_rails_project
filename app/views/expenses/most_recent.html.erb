@@ -1,0 +1,18 @@
+<h1>Your recent expenses </h1>
+
+<% if @expenses.empty? %>
+<p>You do not have expenses<p>
+<%else%>
+<ul>
+<% @expenses.each do |exp| %>
+
+<li> Date: <%= exp.date_time%><br>
+     Amount: <%= exp.amount%><br>
+     Description: <%= exp.description%><br>
+</li>
+<%end%>
+</ul>
+<%end%>
+
+
+

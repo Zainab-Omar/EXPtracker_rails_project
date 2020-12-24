@@ -4,25 +4,15 @@
 
 <h1><%= @account.name %></h1>
 <h3> amount: <%= @account.amount %></h3>
-<%= link_to 'Edit Account', edit_account_path(@account)%><br>
+<%= link_to 'Edit', edit_account_path(@account)%>/
 <%= link_to 'Delete', @account, method: :delete, data: { confirm: 'Are you Sure? all the associated expenses will be deleted too.' } %>
-<h4> <%= link_to 'Your Expenses', account_expenses_path(@account)%> </h4>
-    <% if @account.expenses.any? %>
-        <ul>
-        <% @account.expenses.each do |exp| %>
-        <li>$<%= link_to exp.amount, account_expense_path(@account,exp)%></li>
-        <% end %>
-        </ul>
-    <% else %>
-        <p>You do not have any expenses</p>
-    <%end%>
 
-    
+<h4> <%= link_to 'Your Expenses', account_expenses_path(@account)%>/<%= link_to 'Create Expense', new_account_expense_path(@account) %> </h4>
 
-    <table>
+    <table id="account-summary" class="center">
     <thead>
       <tr>
-        <th>Account Summary</th>
+        <th colspan="2">Account Summary</th>
       </tr>
     </thead>
     <tbody>
@@ -47,4 +37,4 @@
     </tbody>
   </table>
 
-<%= link_to 'Create Expense', new_account_expense_path(@account) %>
+

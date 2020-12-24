@@ -1,20 +1,14 @@
  <% if flash[:notice] %>
     <div class="notice"><%= flash[:notice] %></div>
   <% end %>
-<h1>Welcome <%= @user.username%>!</h1>
-    <h2>Your accounts</h2>
+<div class="wrapper">
+  <h1>Welcome <%= @user.username%>!</h1>
+
     <% if @user.accounts.empty? %>
       <h3> You do not have any accounts</h3>
-    <%else%>
-    <ul>
-        <% @user.accounts.each do |account| %>
-        <li><%= link_to account.name, account_path(account)%></li>
-        <%end%>
-    </ul>
-    <% end %>
-
-<%= link_to 'New Account', new_account_path %><br><br>
-
-<%= form_tag ({controller: 'sessions', action: 'destroy', method: 'post'}) do %>
-  <input type=submit value='Signout'>
-<% end %>
+      <%= link_to 'New Account', new_account_path, class: 'button' %><br><br>
+      <%else%>
+      <%= link_to "View your accounts", accounts_path, class: 'button'%>
+      <% end %><br><br>
+     <%= image_tag "expenses_calculator.jpeg", :height => '500px'%>
+</div>
