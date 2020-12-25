@@ -1,3 +1,7 @@
+<% if flash[:error] %>
+    <div class="error"><%= flash[:error] %></div>
+<% end %>
+
 <div class="wrapper">
 <h1>Welcome to EXPtracker App !</h1>
 <h3> New User <%= link_to 'Sign up', signup_path %></h3>

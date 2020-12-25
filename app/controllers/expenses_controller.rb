@@ -3,35 +3,28 @@ class ExpensesController < ApplicationController
     before_action :find_account
 
     def index
-     # binding.pry
-        if @account.nil?
+      if @account.nil?
           redirect_to accounts_path #account index page
           flash[:error] = "Account does not exist"
-        elsif
+      elsif
           @account.user_id == current_user.id
           @expenses = @account.expenses
-        else
+      else
           redirect_to accounts_path
-          flash[:error] = "you are unauthorized to view expenses associated with this account"
-        end
+          flash[:error] = "you are unauthorized to view this expense"
+      end
     end
 
     def new
-
-    #binding.pry
-        #@account = current_user.accounts.find_by(id: params[:account_id])
-          if @account && @account.user_id == current_user.id
-            @expense = @account.expenses.new
-          else
-            redirect_to accounts_path
-            flash[:error] = "unauthorized to create new expense"
-            end
-          end
+      if @account && @account.user_id == current_user.id
+          @expense = @account.expenses.new
+      else
+        redirect_to accounts_path(@account)
+        flash[:error] = "unauthorized to create new expense"
+      end
+    end
 
     def create
-      # raise params.inspect
-      # @account = current_user.accounts.find_by(id: params[:account_id]) #find parent route
-      #binding.pry
        @expense = @account.expenses.build(expense_params)
        @expense.user_id = @account.user_id
        if @expense.save
@@ -43,16 +36,10 @@ class ExpensesController < ApplicationController
    end
 
    def show
-
-   #binding.pry
-    # if @account.nil?
-    #   redirect_to accounts_path #account index page
-    #   flash[:error] = "Account Not Found"
-    # elsif
       if @account && @account.user == current_user
          @expense = @account.expenses.find_by(id: params[:id])
        if @expense.nil?
-          redirect_to account_path(@account) #account show page
+          redirect_to account_expenses_path(@account) #expenses index page
           flash[:error] = "Expense Not Found"
       else
         render 'show'
@@ -64,7 +51,6 @@ class ExpensesController < ApplicationController
     end
 
     def edit
-      #binding.pry
       if @account && @account.user == current_user
           @expense = @account.expenses.find_by(id: params[:id])
       else
@@ -92,11 +78,6 @@ class ExpensesController < ApplicationController
         flash[:notice] = "Successfully Deleted an Expense"
       end
     end
-
-    # def most_recent
-    #  #binding.pry
-    #  @expenses = Expense.recent
-    # end
 
   private
     def expense_params

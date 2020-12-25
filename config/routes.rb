@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   post '/signout', to: 'sessions#destroy'
 
   get '/auth/:provider/callback' => 'sessions#create'
-  get '/expenses/most_recent' => 'expenses#most_recent'
+ # get '/expenses/most_recent' => 'expenses#most_recent'
   resources :users, only: [:create, :show] 
   resources :accounts
   resources :categories

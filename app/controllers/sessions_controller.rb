@@ -5,16 +5,19 @@ class SessionsController < ApplicationController
 
     def create
         #omniauth login
+        #binding.pry
         if auth
             @user = User.find_or_create_by(uid: auth['uid']) do |u|
                 u.username = auth['info']['nickname']
-                u.email = auth['info']['email']
+                u.email = auth['info']['nickname']
                 u.password = SecureRandom.hex
             end
+            #binding.pry
             session[:user_id] = @user.id
-            redirect_to user_path(@user)
+            
+            redirect_to user_path(@user) 
         else
-            #normal login 
+      #normal login 
         @user = User.find_by(email: params[:user][:email])
         if @user && @user.authenticate(params[:user][:password])
             session[:user_id] = @user.id
