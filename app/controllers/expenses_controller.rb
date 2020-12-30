@@ -3,9 +3,12 @@ class ExpensesController < ApplicationController
     before_action :find_account
 
     def index
+     # binding.pry
       if @account.nil?
           redirect_to accounts_path #account index page
           flash[:error] = "Account does not exist"
+          # @expenses = Expense.all
+          # render 'all'
       elsif
           @account.user_id == current_user.id
           @expenses = @account.expenses
@@ -13,6 +16,11 @@ class ExpensesController < ApplicationController
           redirect_to accounts_path
           flash[:error] = "you are unauthorized to view this expense"
       end
+      #binding.pry
+      # if params[:q]
+      # @expenses = Expense.all
+      #   @expenses =  @account.expenses.find_by_category(params[:q])
+      # end
     end
 
     def new
@@ -25,7 +33,7 @@ class ExpensesController < ApplicationController
     end
 
     def create
-       @expense = @account.expenses.build(expense_params)
+      @expense = @account.expenses.build(expense_params)
        @expense.user_id = @account.user_id
        if @expense.save
          redirect_to account_expense_path(@account, @expense) #account/expense/showpage

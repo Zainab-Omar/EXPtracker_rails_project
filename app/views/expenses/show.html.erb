@@ -7,13 +7,15 @@
   <% end %>
 
 <h1>Your Expense details</h1>
+
+<%= link_to 'Edit Expense', edit_account_expense_path(@account, @expense)%>/ 
+<%= link_to 'Delete', @expense, method: :delete, data: { confirm: 'Are you Sure?' } %>
+
   <ul>
     <li><strong>Account name: </strong><%= @expense.account.name %></li>
-    <li><strong> Expense Amount: </strong><%= @expense.amount %></li>
+    <li><strong> Expense Amount: </strong><%= number_to_currency(@expense.amount) %></li>
     <li><strong> Transction Date: </strong> <%= @expense.date_time %>
     <li><strong> Category: </strong><%= @expense.category.name%></li>
     <li><strong> Description: </strong> <%= @expense.description %></li>
     </ul>
-
-<%= link_to 'Edit Expense', edit_account_expense_path(@account, @expense)%><br>
-<%= link_to 'Delete', @expense, method: :delete, data: { confirm: 'Are you Sure?' } %>
+<%= link_to 'Back', account_expenses_path(@expense.account) %>

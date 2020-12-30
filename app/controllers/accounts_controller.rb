@@ -57,6 +57,8 @@ class AccountsController < ApplicationController
    end
 
    def destroy
+    #binding.pry
+    # @account.expenses.delete_all
     @account.destroy
     flash[:notice] = "Successfully Deleted Account"
     redirect_to accounts_path #account index page

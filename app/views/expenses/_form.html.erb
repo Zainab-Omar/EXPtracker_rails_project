@@ -26,13 +26,13 @@
     <%= f.text_area :description %>
     </div><br>
 
-    <p>Choose a category or Create: </p>
+    <p>Choose or create a category: </p>
 
     <div class="field_with_errors">
     <%= f.text_field :category_name, list: "categories_autocomplete" %>
     <datalist id="categories_autocomplete">
       <% Category.all.uniq.each do |category| %>
-        <option value="<%= category.name %>">
+        <option value="<%= category.titleize_name%>">
       <% end %>
     </datalist>
     </div><br>
