@@ -1,22 +1,30 @@
-# README
+# EXPtracker Rails App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This app is to help a user to keep track of all their personal expenses.
 
-Things you may want to cover:
+# Ruby Version
+ ` ruby '2.6.1 `
+ ## Installation
+Fork and clone repo:
+` https://github.com/Zainab-Omar/EXPtracker_rails_project `
 
-* Ruby version
+Install all gem dependencies:
 
-* System dependencies
+` bundle install `
 
-* Configuration
+Create database scheme with migrations:
 
-* Database creation
+` rake db:migrate `
 
-* Database initialization
+Start local server:
 
-* How to run the test suite
+` rails s `
 
-* Services (job queues, cache servers, search engines, etc.)
+Access site at http://localhost:3000
 
-* Deployment instructions
+## Contributing
+Bug reports and pull requests are welcome on GitHub at https://github.com/Zainab-Omar/EXPtracker_rails_project. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+
+## License
+
+This library is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
