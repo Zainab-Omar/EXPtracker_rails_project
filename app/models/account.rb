@@ -1,7 +1,7 @@
 class Account < ApplicationRecord
     belongs_to :user
     has_many :expenses, :dependent => :delete_all
-    has_many :categories, through: :expenses, :dependent => :delete_all
+    has_many :categories, through: :expenses
 
     validates :name, presence: true #, uniqueness: true
     validates :amount, presence: true, numericality: { greater_than: 0 }

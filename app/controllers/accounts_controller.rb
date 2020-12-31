@@ -1,4 +1,5 @@
 class AccountsController < ApplicationController
+    before_action :authenticate_user
     before_action :logged_in?
     before_action :find_account, only: [:show, :edit, :update, :destroy]
 
@@ -57,8 +58,6 @@ class AccountsController < ApplicationController
    end
 
    def destroy
-    #binding.pry
-    # @account.expenses.delete_all
     @account.destroy
     flash[:notice] = "Successfully Deleted Account"
     redirect_to accounts_path #account index page

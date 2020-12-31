@@ -1,4 +1,5 @@
 class ExpensesController < ApplicationController
+    before_action :authenticate_user
     before_action :logged_in?
     before_action :find_account
 
