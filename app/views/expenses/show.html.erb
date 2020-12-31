@@ -18,4 +18,4 @@
     <li><strong> Category: </strong><%= @expense.category.name%></li>
     <li><strong> Description: </strong> <%= @expense.description %></li>
     </ul>
-<%= link_to 'Back', account_expenses_path(@expense.account) %>
+<%= link_to 'Back to account', account_path(@expense.account) %>

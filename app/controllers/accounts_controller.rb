@@ -19,7 +19,7 @@ class AccountsController < ApplicationController
     def create
         @account = current_user.accounts.new(account_params)
         if @account.save
-            redirect_to accounts_path  #account_index page
+            redirect_to account_path(@account)  #account_show page
             flash[:notice] = "Successfully Created An Account"
         else
             render 'new' #accounts new form 
