@@ -3,11 +3,11 @@ class Account < ApplicationRecord
     has_many :expenses, :dependent => :delete_all
     has_many :categories, through: :expenses
 
-    validates :name, presence: true #, uniqueness: true
+    validates :name, presence: true 
     validates :amount, presence: true, numericality: { greater_than: 0 }
 
     scope :order_by_amount, -> {order('accounts.amount DESC')}
-    #scope :find_by_category, -{where('name?', "%#{params[:q]}%")}
+    
 
     def total_expenses
         self.expenses.sum(:amount)
