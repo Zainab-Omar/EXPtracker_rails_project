@@ -7,7 +7,9 @@ class Account < ApplicationRecord
     validates :amount, presence: true, numericality: { greater_than: 0 }
 
     scope :order_by_amount, -> {order('accounts.amount DESC')}
-    
+    scope :find_by_name, ->(name) {where("name LIKE ?", "%#{name}%")}
+
+    #"name LIKE ? OR postal_code LIKE ?", "%#{search}%", "%#{search}%"
 
     def total_expenses
         self.expenses.sum(:amount)

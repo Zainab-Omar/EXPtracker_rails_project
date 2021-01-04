@@ -4,8 +4,14 @@ class AccountsController < ApplicationController
     before_action :find_account, only: [:show, :edit, :update, :destroy]
 
     def index
+     #binding.pry
+      if params[:q]
+        #@search = params[:q]
+        @accounts = current_user.accounts.find_by_name(params[:q])
+      else
         @accounts = current_user.accounts.order_by_amount
     end
+  end
     
     def new
       if @current_user
